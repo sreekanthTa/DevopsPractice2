@@ -65,7 +65,7 @@ jobs:
 
         
       - name: Install Produciton dependencies
-        run: npm ci
+        run: npm install
 
       - name: Check if dependencies from cache or not
         run: echo "Got Modules from Cache ? ${{steps.modules_cache.outputs.cache-hit}}"
