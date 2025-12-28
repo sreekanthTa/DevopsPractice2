@@ -67,7 +67,7 @@ jobs:
         
       - name: Check Cache before npm install
         run: |
-            if ["${{steps.modules_cache.outputs.cache-hit}}" != 'true'] then
+            if [ "${{steps.modules_cache.outputs.cache-hit}}" != 'true' ]; then
                 echo "Cache Missing Installing dependencies..."
                 npm install
             else
