@@ -28,6 +28,14 @@ jobs:
 
      - name: Test Code
        run: npm run test > test-result.txt
+
+     - name: SonarCloud Scan
+       uses: SonarSource/sonarcloud-github-action@v2
+       with:
+        organization: sreekanthta       # from step 2
+        projectKey: sreekanthTa_DevopsPractice2    # from step 3
+        token: ${{ secrets.SONAR_TOKEN }}  # from step 5
+
     
      - name: Run tests and save results
        run: |
@@ -107,3 +115,6 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           severity: 'CRITICAL'
+
+
+ 
