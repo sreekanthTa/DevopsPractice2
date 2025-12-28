@@ -39,7 +39,7 @@ jobs:
        with:
         organization: sreekanthta       # from step 2
         projectKey: sreekanthTa_DevopsPractice2    # from step 3
-        token: ${{ env.SONAR_TOKEN  }}  # from step 5
+        token: ${{ secrets.SONAR_TOKEN  }}  # from step 5
 
     
      - name: Run tests and save results
