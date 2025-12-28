@@ -55,7 +55,9 @@ jobs:
         with:
           name: code-coverage-report
           path: /results
-
+      - name: CheckOutCode
+        uses: actions/checkout@v6
+        
       - name: Use Node Modules from the cache test
         id: modules_cache
         uses: actions/cache@v4
