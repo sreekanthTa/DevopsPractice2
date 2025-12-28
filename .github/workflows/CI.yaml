@@ -86,8 +86,6 @@ jobs:
   build_and_test_image:
    needs: test_learn
    runs-on: ubuntu-latest
-   container:
-      image: node:24
    steps:
      - name: Checkout Code
        uses: actions/checkout@v4
