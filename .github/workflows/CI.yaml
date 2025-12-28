@@ -1,0 +1,27 @@
+name: TEST AND BUILD
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: node:20
+      env:
+        NODE_ENV: development
+    steps:
+     - name: CheckOutCode
+       uses: actions/checkout@v6
+
+     - name: Install dependencies
+       run: npm ci
+
+     - name: Test Code
+       run: npm run test > test-result.txt
+
+     - name: Upload Test Artifacts
+       uses: actions/upload-artifact@v4
+       with:
+          name: code-coverage-report
+          path: test-result.txt
+        
+
+       
