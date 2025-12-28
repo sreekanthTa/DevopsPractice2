@@ -28,6 +28,7 @@ jobs:
         name: code-coverage-report
         path: test-results
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     container:
        image: node:20
