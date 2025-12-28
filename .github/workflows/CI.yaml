@@ -93,6 +93,9 @@ jobs:
      - name: Build Docker image
        run: docker build --no-cache -t docker.io/my-organization/my-app:${{ github.sha }} .
 
+     - name: Inspect installed packages
+       run: docker run --rm docker.io/my-organization/my-app:${{ github.sha }} sh -c "npm list cross-spawn glob"
+
      - name: Set up Docker
        uses: docker/setup-buildx-action@v2
 

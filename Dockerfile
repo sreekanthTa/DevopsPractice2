@@ -9,6 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production
 
+
 COPY --from=builder /app/server.js ./
 COPY --from=builder /app/index.js ./
 
