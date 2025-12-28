@@ -64,14 +64,15 @@ jobs:
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
-
         
-      - name: Install Produciton dependencies
-        run: npm install
-
-      - name: Check if dependencies from cache or not
-        run: echo "Got Modules from Cache ? ${{steps.modules_cache.outputs.cache-hit}}"
-      
+      - name: Check Cache before npm install
+        run: |
+            if ["${{steps.modules_cache.outputs.cache-hit}}" != 'true'] then
+                echo "Cache Missing Installing dependencies..."
+                npm install
+            else
+               echo "Cache hit! Skip Installation"
+            fi
       - name: Check Files
         run: ls /results/
 
