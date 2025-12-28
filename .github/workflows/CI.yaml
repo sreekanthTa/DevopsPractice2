@@ -31,8 +31,8 @@ jobs:
      - name: Test Code
        run: npm run test > test-result.txt
 
-    - name: Check SONAR_TOKEN secret
-      run: echo "Secret length: ${#${{ secrets.SONAR_TOKEN }}}"
+     - name: Check SONAR_TOKEN secret
+       run: echo "Secret length: ${#${{ secrets.SONAR_TOKEN }}}"
 
      - name: SonarCloud Scan
        uses: SonarSource/sonarcloud-github-action@v2
