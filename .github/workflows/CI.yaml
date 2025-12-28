@@ -41,7 +41,7 @@ jobs:
      - name: Set Output
        id: output_step
        run: echo "result=success" >> $GITHUB_OUTPUT
-  deploy:
+  test_learn:
     needs: test
     runs-on: ubuntu-latest
     container:
@@ -81,4 +81,22 @@ jobs:
         
       - name: Print Results
         run: echo "The output of the BUILD Step is ${{needs.test.outputs.result}}"
-       
+  build_and_test_image:
+   needs: test_learn
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout Code
+       uses: actions/checkout@v4
+
+     - name: Build Docker image
+       run: docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+
+     - name: Scan image
+       uses: aquasecurity/trivy-actions@0.33.1
+       with:
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
