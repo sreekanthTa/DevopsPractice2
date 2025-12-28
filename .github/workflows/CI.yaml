@@ -55,5 +55,5 @@ jobs:
         run: cat /results/test-result.txt
         
       - name: Print Results
-        run: echo "The output of the BUILD Step is ${{needs.test.output.results}}"
+        run: echo "The output of the BUILD Step is ${{needs.test.outputs.results}}"
        
