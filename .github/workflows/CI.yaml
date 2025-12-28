@@ -16,12 +16,17 @@ jobs:
 
      - name: Test Code
        run: npm run test > test-result.txt
+    
+     - name: Run tests and save results
+       run: |
+          mkdir -p test-results
+          npm run test -- --ci --reporters=default > test-results/test-result.txt 2>&1
 
      - name: Upload Test Artifacts
        uses: actions/upload-artifact@v4
        with:
-          name: code-coverage-report
-          path: test-result.txt
+        name: code-coverage-report
+        path: test-result
         
 
        
