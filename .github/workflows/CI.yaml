@@ -7,6 +7,8 @@ jobs:
       image: node:20
       env:
         NODE_ENV: development
+    outputs:
+      result : ${{steps.output_step.outputs.result}}
     steps:
      - name: CheckOutCode
        uses: actions/checkout@v6
@@ -27,6 +29,10 @@ jobs:
        with:
         name: code-coverage-report
         path: test-results
+
+     - name: Set Output
+       id: output_step
+       run: echo "result=success" >> $GITHUB_OUTPUT
   deploy:
     needs: test
     runs-on: ubuntu-latest
@@ -35,6 +41,7 @@ jobs:
        env:
          NODE_ENV: development
     steps:
+    
       - name: Get Build Artifacts
         uses: actions/download-artifact@v4
         with:
@@ -47,5 +54,6 @@ jobs:
       - name: Print Artifacts Result
         run: cat /results/test-result.txt
         
-
+      - name: Print Results
+        run: echo "The output of the BUILD Step is ${{needs.test.output.results}}"
        
