@@ -13,8 +13,8 @@ jobs:
      - name: CheckOutCode
        uses: actions/checkout@v6
 
-     - name: Install dependencies
-       run: npm ci
+     - name: Install all dependencies
+       run: npm install
 
      - name: Test Code
        run: npm run test > test-result.txt
@@ -47,6 +47,9 @@ jobs:
         with:
           name: code-coverage-report
           path: /results
+
+      - name: Install Produciton dependencies
+        run: npm ci
       
       - name: Check Files
         run: ls /results/
