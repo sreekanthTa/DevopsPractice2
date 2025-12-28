@@ -41,8 +41,11 @@ jobs:
           name: code-coverage-report
           path: /results
       
+      - name: Check Files
+        run: ls /results/
+        
       - name: Print Artifacts Result
-        run: cat /results/test-results/
+        run: cat /results/test-results
         
 
        
