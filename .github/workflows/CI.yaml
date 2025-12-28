@@ -58,7 +58,7 @@ jobs:
 
       - name: Use Node Modules from the cache test
         id: modules_cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
