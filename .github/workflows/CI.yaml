@@ -12,6 +12,14 @@ jobs:
     steps:
      - name: CheckOutCode
        uses: actions/checkout@v6
+     
+     - name: Caching Node Modules
+       id: modules_cache
+       uses: actions/cache@v4
+       with:
+         path: node_modules
+         key: deps-${{hashFiles('**/package-lock.json')}}
+
 
      - name: Install all dependencies
        run: npm install
@@ -48,8 +56,19 @@ jobs:
           name: code-coverage-report
           path: /results
 
+      - name: Use Node Modules from the cache test
+        id: modules_cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+        
       - name: Install Produciton dependencies
         run: npm ci
+
+      - name: Check if dependencies from cache or not
+        run: echo "Got Modules from Cache ? ${{steps.modules_cache.outputs.cache-hit}}"
       
       - name: Check Files
         run: ls /results/
