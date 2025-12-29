@@ -44,7 +44,7 @@ jobs:
        with:
         organization: sreekanthta       
         projectKey: sreekanthTa_DevopsPractice2     
-        token: ${{ secrets.SONAR_TOKEN  }}   
+        token: $SONAR_TOKEN   
 
     
      - name: Run tests and save results
