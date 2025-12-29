@@ -133,12 +133,15 @@ jobs:
          username: ${{ secrets.DOCKER_USERNAME }}
          password: ${{ secrets.DOCKER_PASSWORD }}
 
+     - name: Tag Image
+       run: docker tag docker.io/my-organization/my-app:${{ github.sha }} dockeridsreekanth/org:${{ github.sha }}
+
 
 
      - name: Push an Image to the dockerhub
        id: docker_image_push
        run: |
-          docker push docker.io/my-organization/my-app:${{ github.sha }}
+          docker push dockeridsreekanth/org:${{ github.sha }}
           echo "imageid:${{github.sha}}" >> image-result
 
      - name: Upload Test Artifacts
