@@ -31,12 +31,19 @@ jobs:
      - name: Test Code
        run: npm run test > test-result.txt
 
+     - name: Verify token
+       run : if [ -z $SONAR_TOKEN ]; then
+               echo "SONAR_TOKEN is EMPTY"
+             else 
+               echo "SONAR_TOKEN is PRESENT"
+             fi
+
      - name: SonarCloud Scan
        uses: SonarSource/sonarcloud-github-action@v2
        with:
-        organization: sreekanthta       # from step 2
-        projectKey: sreekanthTa_DevopsPractice2    # from step 3
-        token: ${{ env.SONAR_TOKEN  }}  # from step 5
+        organization: sreekanthta       
+        projectKey: sreekanthTa_DevopsPractice2     
+        token: ${{ secrets.SONAR_TOKEN  }}   
 
     
      - name: Run tests and save results
