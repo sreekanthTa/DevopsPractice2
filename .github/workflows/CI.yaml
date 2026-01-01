@@ -1,6 +1,8 @@
 name: TEST AND BUILD
 on: push
 
+permissions:
+  contents: write
 
 jobs:
   test:
