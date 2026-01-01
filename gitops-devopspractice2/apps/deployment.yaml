@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: simple-api
-        image: dockeridsreekanth/org:dd3c2d087f468551fa4a4fe54615d1d39683650b
+        image: dockeridsreekanth/org:1cb2a0671a68e6a378faa078412cb53162f7f396
         ports:
         - containerPort: 3000
