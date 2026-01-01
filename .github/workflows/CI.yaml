@@ -154,8 +154,8 @@ jobs:
 
      - name: Update image tag
        run: |
-            cd gitops-devopspractice2/apps
-            sed -i "s#image: .*/org:.*#image: ***/org:${{ github.sha }}#" deployment.yaml
+            cd gitops-devopspractice2/apps  
+            sed -i "s#image: .*/org:.*#image: dockeridsreekanth/org:${{ github.sha }}#" deployment.yaml
 
 
      - name: Push image
