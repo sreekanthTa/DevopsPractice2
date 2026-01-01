@@ -5,7 +5,7 @@ app.use(express.json());
 
 // Sample route
 app.get('/', (req, res) => {
-  res.send({message:'Hello, World !'});
+  res.send({message:'Hello, World'});
 });
 
 
