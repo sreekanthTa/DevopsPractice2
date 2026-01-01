@@ -161,7 +161,7 @@ jobs:
               cd gitops-devopspractice2/apps
               git config user.name "ci-bot"
               git config user.email "ci@bot.com"
-              git add deployment.yaml
+              git add .
               git commit -m "Update image to ${{ github.sha }}"
               git push
 
